@@ -5,7 +5,7 @@ type OCLEditorState = {
 }
 
 const initialState: OCLEditorState = {
-  code: '',
+  code: '-- OCL code',
 }
 
 type SetOCLCodeAction = PayloadAction<OCLEditorState['code']>

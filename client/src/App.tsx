@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import EditorJS from './components/EditorJS'
 import EditorOCL from './components/EditorOCL'
 import Results from './components/Results'
+import GlobalSettings from './components/GlobalSettings'
+import FontResizer from './components/FontResizer'
 
 const App = () => {
   return (
@@ -10,6 +12,8 @@ const App = () => {
       <EditorJS />
       <EditorOCL />
       <Results />
+      <GlobalSettings />
+      <FontResizer />
     </Container>
   )
 }

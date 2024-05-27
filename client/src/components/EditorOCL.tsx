@@ -1,9 +1,10 @@
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useMemo } from 'react'
 import styled from 'styled-components'
 import Resizer from '../primitives/Resizer'
 import CodeMirror from '@uiw/react-codemirror'
 import {useAppDispatch, useAppSelector} from '../storage/hooks'
 import {setOCLCode} from '../storage/editorOCL'
+import {vim} from '@replit/codemirror-vim'
 
 const EditorOCL = () => {
   const { code } = useAppSelector(({ editorOCL }) => editorOCL)
@@ -13,6 +14,13 @@ const EditorOCL = () => {
     dispatch(setOCLCode(newCode))
   }, [dispatch])
 
+  const { vimEnabled } = useAppSelector(({ global }) => global)
+  const extensions = useMemo(() => {
+    return vimEnabled
+      ? [vim({ status: true })]
+      : []
+  }, [vimEnabled])
+
   return (
     <Container>
       <Resizer>{({ width, height }) => (
@@ -21,6 +29,7 @@ const EditorOCL = () => {
           onChange={handleCodeChange}
           width={`${width}px`}
           height={`${height}px`}
+          extensions={extensions}
         />
       )}</Resizer>
     </Container>

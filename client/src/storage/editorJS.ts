@@ -6,7 +6,7 @@ type JSEditorState = {
 }
 
 const initialState: JSEditorState = {
-  code: '',
+  code: '// JavaScript or TypeScript code',
   language: 'js'
 }
 

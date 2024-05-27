@@ -6,11 +6,11 @@ type Size = {
   height: number
 }
 
-type Resizer = FC<{
+type ResizerType = FC<{
   children: FC<Size>
 }>
 
-const Resizer: Resizer = ({ children }) => {
+const Resizer: ResizerType = ({ children }) => {
   const rootRef = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState<Size>({ width: 0, height: 0 })
   useEffect(() => {

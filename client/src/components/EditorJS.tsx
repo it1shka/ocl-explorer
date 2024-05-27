@@ -6,14 +6,20 @@ import Resizer from '../primitives/Resizer'
 import CodeMirror from '@uiw/react-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
 import Button from '../primitives/Button'
+import {vim} from '@replit/codemirror-vim'
 
 const EditorJS = () => {
   const { code, language } = useAppSelector(({ editorJS }) => editorJS)
+  const { vimEnabled } = useAppSelector(({ global }) => global)
   const extensions = useMemo(() => [
     javascript({
       typescript: language === 'ts'
-    })
-  ], [language])
+    }),
+    ...(vimEnabled 
+      ? [vim({ status: true })]
+      : []
+    ),
+  ], [language, vimEnabled])
 
   const dispatch = useAppDispatch()
   const handleCodeChange = useCallback((newCode: string) => {
