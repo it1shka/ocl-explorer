@@ -1,0 +1,19 @@
+{
+  "name": "ocl-explorer-server",
+  "version": "1.0.0",
+  "description": "Server that is responsible for handling OCL verification",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "npx ts-node src/index.ts"
+  },
+  "author": "Tikhon Belousov",
+  "license": "SEE LICENSE IN LICENSE",
+  "dependencies": {
+    "@types/node": "^20.12.12",
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2"
+  }
+}
