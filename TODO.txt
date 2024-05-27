@@ -1,0 +1,4 @@
+1) Flexible layout
+2) Notifications
+3) Linter for JS/TS & Syntax highlighting for OCL
+4) Examples of JS+OCL programs that can be loaded from server
