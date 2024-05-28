@@ -16,7 +16,7 @@ type PushNotificationAction = PayloadAction<Notification>
 
 const notifications = createSlice({
   name: 'notifications',
-  initialState: new Array<Notification>,
+  initialState: new Array<Notification>(),
   reducers: {
     pushNotification: (state, { payload }: PushNotificationAction) => {
       return [...state, payload]

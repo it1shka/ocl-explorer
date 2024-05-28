@@ -2,12 +2,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import editorJS from './editorJS'
 import editorOCL from './editorOCL'
 import global from './global'
+import notifications from './notifications'
 
 const store = configureStore({
   reducer: {
     editorJS,
     editorOCL,
     global,
+    notifications,
   }
 })
 

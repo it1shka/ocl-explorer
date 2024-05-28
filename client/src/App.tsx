@@ -4,10 +4,12 @@ import EditorJS from './components/EditorJS'
 import EditorOCL from './components/EditorOCL'
 import Results from './components/Results'
 import GlobalSettings from './components/GlobalSettings'
+import Notifications from './components/Notifications'
 
 const App = () => {
   return (
     <Container>
+      <Notifications />
       <EditorJS />
       <EditorOCL />
       <Results />
