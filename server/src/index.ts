@@ -12,6 +12,9 @@ app.use(cors({
 }))
 app.use(express.json())
 
+app.get('/', (_, res) => {
+  res.send('OCL Explorer API v1.0')
+})
 app.post('/verify', verifyHandler)
 app.get('/example', exampleHandler)
 app.use((req, res, next) => {

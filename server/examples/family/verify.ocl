@@ -1,0 +1,13 @@
+context Person inv Name:
+  self.name <> ""
+
+context Person inv Surname:
+  self.surname <> ""
+
+context Person inv Age:
+  self.age >=0 and self.age < 200
+
+context Family inv Parents:
+  let old = 
+    self.members->select(p | p.age > 18) 
+  in old->size() > 1
