@@ -6,10 +6,14 @@ import verifyHandler from './verify'
 import exampleHandler from './example'
 
 const app = express()
+// TODO: configure properly
+/*
 app.use(cors({ 
   origin: 'http://localhost',
   methods: ['GET', 'POST']
 }))
+ */
+app.use(cors())
 app.use(express.json())
 
 app.get('/', (_, res) => {

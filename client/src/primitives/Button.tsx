@@ -5,6 +5,7 @@ export type ButtonProps = Partial<{
 }>
 
 const Button = styled.button<ButtonProps>`
+  cursor: pointer;
   border: none;
   padding: 0.25em 0.5em;
   ${({ $active }) => $active && css`
