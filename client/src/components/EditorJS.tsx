@@ -7,6 +7,7 @@ import CodeMirror from '@uiw/react-codemirror'
 import { javascript } from '@codemirror/lang-javascript'
 import Button from '../primitives/Button'
 import {vim} from '@replit/codemirror-vim'
+import UploadJS from './UploadJS'
 
 const EditorJS = () => {
   const { code, language } = useAppSelector(({ editorJS }) => editorJS)
@@ -53,6 +54,7 @@ const EditorJS = () => {
           height={`${height}px`}
         />
       )}</Resizer>
+      <UploadJS />
     </Container>
   )
 }

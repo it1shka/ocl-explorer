@@ -13,7 +13,7 @@ const FileLoad = ({
   onUpload,
   onUploadError,
   allowedExtensions,
-  encoding = 'utf-8'
+  encoding = 'utf-8',
 }: FileLoadProps) => {
   const handleFileUpload = useCallback(() => {
     const input = document.createElement('input')
