@@ -5,6 +5,7 @@ import CodeMirror from '@uiw/react-codemirror'
 import {useAppDispatch, useAppSelector} from '../storage/hooks'
 import {setOCLCode} from '../storage/editorOCL'
 import {vim} from '@replit/codemirror-vim'
+import UploadOCL from './UploadOCL'
 
 const EditorOCL = () => {
   const { code } = useAppSelector(({ editorOCL }) => editorOCL)
@@ -32,6 +33,7 @@ const EditorOCL = () => {
           extensions={extensions}
         />
       )}</Resizer>
+      <UploadOCL />
     </Container>
   )
 }
@@ -41,4 +43,5 @@ export default memo(EditorOCL)
 const Container = styled.div`
   grid-row: 1 / 2;
   grid-column: 2 / 3;
+  position: relative;
 `
