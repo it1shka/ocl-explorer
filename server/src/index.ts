@@ -1,37 +1,27 @@
-import { OclEngine } from "@stekoe/ocl.js"
+import 'dotenv/config'
+import express from 'express'
+import type { ErrorRequestHandler } from 'express'
+import cors from 'cors'
+import verifyHandler from './verify'
+import exampleHandler from './example'
 
-class Person {
-  constructor (
-    public readonly name: string,
-    public readonly surname: string,
-    public readonly age: number,
-  ) {}
-}
+const app = express()
+app.use(cors({ 
+  origin: 'http://localhost',
+  methods: ['GET', 'POST']
+}))
+app.use(express.json())
 
-class Family {
-  typeName = "Family"
-  constructor (
-    public readonly members: Person[],
-  ) {}
-}
+app.post('/verify', verifyHandler)
+app.get('/example', exampleHandler)
+app.use((req, res, next) => {
+  res.status(404).send('Service not found')
+})
+app.use(((err, req, res, next) => {
+  res.status(500).send('Internal server error')
+}) satisfies ErrorRequestHandler)
 
-const family = new Family([
-  new Person("Tikhon", "Belousov", 19),
-  new Person("Fyodor", "Belousov", 12),
-  new Person("Glafira", "Belousova", 8),
-  new Person("", "", -1),
-])
-
-const engine = OclEngine.create()
-engine.addOclExpression(`
-  context Family inv NamesAreCorrect:
-    not self.members->any(p | p.name = "")
-
-  context Family inv SurnamesAreCorrect:
-    not self.members->any(p | p.surname = "")
-
-  context Family inv AgesAreCorrect:
-    not self.members->any(p | p.age < 0 or p.age > 200)
-`)
-const result = engine.evaluate(family)
-console.dir(result)
+const port = process.env.PORT ?? 3074
+app.listen(port, () => {
+  console.log(`Listening on port ${port}`)
+})
