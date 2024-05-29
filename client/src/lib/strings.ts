@@ -4,3 +4,9 @@ export const toTitle = (original: string) => {
   const tailLower = tail.join('').toLowerCase()
   return firstUpper + tailLower
 }
+
+export const getFileExtension = (filename: string) => {
+  const parts = filename.split('.')
+  if (parts.length < 2) return ''
+  return parts.pop() ?? ''
+}
