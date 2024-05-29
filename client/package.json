@@ -1,5 +1,7 @@
 {
   "name": "ocl-explorer-client",
+  "author": "Tikhon Belousov",
+  "license": "SEE LICENSE IN LICENSE",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
