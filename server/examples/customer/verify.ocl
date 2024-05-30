@@ -1,0 +1,8 @@
+context Customer inv Name:
+  self.name <> ""
+
+context Customer inv Age:
+  self.age >= 18
+
+context Customer inv Money:
+  self.money > 0
