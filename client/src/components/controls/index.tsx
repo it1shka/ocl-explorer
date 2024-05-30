@@ -3,11 +3,13 @@ import styled from 'styled-components'
 import RandomExample from './RandomExample'
 import RunOCL from './RunOCL'
 import ClearConsole from './ClearConsole'
+import ChooseExample from './ChooseExample'
 
 const Controls = () => {
   return (
     <Container>
       <RunOCL />
+      <ChooseExample />
       <RandomExample />
       <ClearConsole />
     </Container>

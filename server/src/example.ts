@@ -50,7 +50,7 @@ export const randomExampleHandler = (_: Request, res: Response) => {
 }
 
 export const exampleListHandler = (_: Request, res: Response) => {
-  const list = Object.keys(EXAMPLES)
+  const list = EXAMPLES.map(({ name }) => name)
   res.json(list)
 }
 

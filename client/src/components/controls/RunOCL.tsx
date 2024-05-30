@@ -3,7 +3,7 @@ import Button from '../../primitives/Button'
 
 const RunOCL = () => {
   return (
-    <Button $active>
+    <Button $active >
       Run OCL
     </Button>
   )

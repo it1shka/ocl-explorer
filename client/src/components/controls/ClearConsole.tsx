@@ -3,7 +3,7 @@ import Button from '../../primitives/Button'
 
 const ClearConsole = () => {
   return (
-    <Button>
+    <Button >
       Clear Console
     </Button>
   )

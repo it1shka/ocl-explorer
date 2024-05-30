@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useState } from 'react'
 import Button from '../../primitives/Button'
 import { useAppDispatch } from '../../storage/hooks'
 import useNotifications from '../../lib/useNotifications'
@@ -10,9 +10,12 @@ import { toTitle } from '../../lib/strings'
 const RandomExample = () => {
   const dispatch = useAppDispatch()
   const { addNotification } = useNotifications()
+  const [loading, setLoading] = useState(false)
 
   const fetchRandomExample = useCallback(async () => {
     try {
+      if (loading) return
+      setLoading(true)
       const { name, js, ocl } = await API.fetchRandomExample()
       dispatch(setJSCode(js))
       dispatch(setOCLCode(ocl))
@@ -20,6 +23,7 @@ const RandomExample = () => {
         variant: 'success',
         title: `Example "${toTitle(name)}"`,
       })
+      setLoading(false)
     } catch (error) {
       const message = error instanceof Error
         ? error.message
@@ -30,10 +34,10 @@ const RandomExample = () => {
         message
       })
     }
-  }, [dispatch, addNotification])
+  }, [loading, dispatch, addNotification])
 
   return (
-    <Button onClick={fetchRandomExample}>
+    <Button $loading={loading} onClick={fetchRandomExample}>
       Random Example
     </Button>
   )
