@@ -41,17 +41,29 @@ const readExamples = () => {
   }).filter((e): e is Example => Boolean(e))
 }
 
-const getRandomExample = (() => {
-  const examples = readExamples()
-  return () => {
-    const index = ~~(Math.random() * examples.length)
-    return examples[index]
-  }
-})()
+const EXAMPLES = readExamples()
 
-const exampleHandler = (_: Request, res: Response) => {
-  const example = getRandomExample()
-  res.json(example)
+export const randomExampleHandler = (_: Request, res: Response) => {
+  const choice = ~~(Math.random() * EXAMPLES.length)
+  const randomExample = EXAMPLES[choice]
+  res.json(randomExample)
 }
 
-export default exampleHandler
+export const exampleListHandler = (_: Request, res: Response) => {
+  const list = Object.keys(EXAMPLES)
+  res.json(list)
+}
+
+export const particularExampleHandler = (req: Request, res: Response) => {
+  const exampleName = req.query['example']
+  if (!exampleName) {
+    res.status(400).send('No example name was provided')
+    return
+  }
+  const example = EXAMPLES.find(({ name }) => exampleName === name)
+  if (!example) {
+    res.status(400).send(`Example "${exampleName}" not found`)
+    return
+  }
+  res.json(example)
+}

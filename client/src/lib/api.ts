@@ -11,6 +11,19 @@ const isCodeExample = (source: any): source is CodeExample => {
     typeof source.ocl  === 'string'
 }
 
+const isStringList = (source: any): source is string[] => {
+  if (!(source instanceof Array)) return false
+  if (source.length <= 0) return true
+  return typeof source[0] === 'string'
+}
+
+const checkResponseStatus = async (response: Response) => {
+  if (!response.ok) {
+    const message = await response.text()
+    throw new Error(message)
+  }
+}
+
 class API {
   private readonly baseUrl: string
   constructor (baseUrl: string) {
@@ -22,10 +35,32 @@ class API {
   }
 
   fetchRandomExample = async () => {
-    const response = await fetch(`${this.baseUrl}/example`)
+    const response = await fetch(`${this.baseUrl}/example/random`)
+    await checkResponseStatus(response)
     const maybeCodeExample = await response.json()
     if (!isCodeExample(maybeCodeExample)) {
-      throw new Error('Wrong API response format')
+      throw new Error('Wrong API response format: expected code example')
+    }
+    return maybeCodeExample
+  }
+
+  fetchExampleList = async () => {
+    const response = await fetch(`${this.baseUrl}/example/list`)
+    await checkResponseStatus(response)
+    const maybeExampleList = await response.json()
+    if (!isStringList(maybeExampleList)) {
+      throw new Error('Wrong API response format: expected string list')
+    }
+    return maybeExampleList
+  }
+
+  fetchParticularExample = async (example: string) => {
+    const params = new URLSearchParams({ example }).toString()
+    const response = await fetch(`${this.baseUrl}/example/get?${params}`)
+    await checkResponseStatus(response)
+    const maybeCodeExample = await response.json()
+    if (!isCodeExample(maybeCodeExample)) {
+      throw new Error('Wrong API response format: expected code example')
     }
     return maybeCodeExample
   }
