@@ -33,6 +33,7 @@ class API {
   verifyOnServer = async (js: string, ocl: string) => {
     const response = await fetch(`${this.baseUrl}/verify`, {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ js, ocl })
     })
     await checkResponseStatus(response)
