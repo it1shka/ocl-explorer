@@ -5,6 +5,7 @@ import { useAppSelector } from '../storage/hooks'
 
 const Results = () => {
   const { entries, loading } = useAppSelector(({ results }) => results)
+  const fontSize = useAppSelector(({ global }) => global.fontSize)
 
   const listRef = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -18,7 +19,7 @@ const Results = () => {
   return (
     <Container>
       <Controls />
-      <Console ref={listRef}>
+      <Console ref={listRef} $fontSize={fontSize}>
         <Mock $size={20} />
         { entries.map((entry, index) => (
           <Log key={index}>{'> '}{entry}</Log>
@@ -50,13 +51,14 @@ const Mock = styled.div<{ $size: number }>`
 
 const Log = styled.p`
   color: grey;
-  font-size: 1.2em;
+  font-size: inherit;
   padding: 0.2em 0.5em;
 `
 
-const Console = styled.div`
+const Console = styled.div<{ $fontSize: number }>`
   flex: 1;
   overflow: scroll;
+  font-size: ${({ $fontSize }) => $fontSize}px;
 `
 
 const Container = styled.div`
