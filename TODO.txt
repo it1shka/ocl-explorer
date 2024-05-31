@@ -3,3 +3,4 @@
 3) Linter for JS/TS & Syntax highlighting for OCL
 4) Examples of JS+OCL programs that can be loaded from server
 5) Add save / load files
+6) Fix resizing
