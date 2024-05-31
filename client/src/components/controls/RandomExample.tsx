@@ -6,6 +6,7 @@ import { setJSCode } from '../../storage/editorJS'
 import { setOCLCode } from '../../storage/editorOCL'
 import API from '../../lib/api'
 import { toTitle } from '../../lib/strings'
+import {getMessage} from '../../lib/strings'
 
 const RandomExample = () => {
   const dispatch = useAppDispatch()
@@ -23,16 +24,15 @@ const RandomExample = () => {
         variant: 'success',
         title: `Example "${toTitle(name)}"`,
       })
-      setLoading(false)
     } catch (error) {
-      const message = error instanceof Error
-        ? error.message
-        : String(error)
+      const message = getMessage(error)
       addNotification({
         variant: 'error',
         title: 'Failed to load code example',
         message
       })
+    } finally {
+      setLoading(false)
     }
   }, [loading, dispatch, addNotification])
 

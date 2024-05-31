@@ -10,3 +10,9 @@ export const getFileExtension = (filename: string) => {
   if (parts.length < 2) return ''
   return parts.pop() ?? ''
 }
+
+export const getMessage = (error: unknown) => {
+  return error instanceof Error
+    ? error.message
+    : String(error)
+}

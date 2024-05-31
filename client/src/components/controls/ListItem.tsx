@@ -6,6 +6,7 @@ import {toTitle} from '../../lib/strings'
 import API from '../../lib/api'
 import {setJSCode} from '../../storage/editorJS'
 import {setOCLCode} from '../../storage/editorOCL'
+import {getMessage} from '../../lib/strings'
 
 type ListItemProps = {
   example: string
@@ -27,16 +28,15 @@ const ListItem = ({ example }: ListItemProps) => {
         variant: 'success',
         title: `Loaded example "${toTitle(name)}"`,
       })
-      setLoading(false)
     } catch (error) {
-      const message = error instanceof Error
-        ? error.message
-        : String(error)
+      const message = getMessage(error)
       addNotification({
         variant: 'error',
         title: `Error loading example "${toTitle(example)}"`,
         message
       })
+    } finally {
+      setLoading(false)
     }
   }, [dispatch, addNotification, loading, example])
 

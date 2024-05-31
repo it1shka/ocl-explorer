@@ -5,6 +5,7 @@ import FileSave from '../primitives/FileSave'
 import {useAppDispatch, useAppSelector} from '../storage/hooks'
 import {setOCLCode} from '../storage/editorOCL'
 import useNotifications from '../lib/useNotifications'
+import {getMessage} from '../lib/strings'
 
 const UploadOCL = () => {
   const code = useAppSelector(({ editorOCL }) => editorOCL.code)
@@ -15,9 +16,7 @@ const UploadOCL = () => {
 
   const { addNotification } = useNotifications()
   const handleUploadError = useCallback((error: unknown) => {
-    const message = error instanceof Error
-      ? error.message
-      : String(error)
+    const message = getMessage(error)
     addNotification({
       variant: 'error',
       title: 'Error while uploading file',

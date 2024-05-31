@@ -4,6 +4,7 @@ import Button from '../../primitives/Button'
 import useNotifications from '../../lib/useNotifications'
 import API from '../../lib/api'
 import ListItem from './ListItem'
+import {getMessage} from '../../lib/strings'
 
 const ChooseExample = () => {
   const [expanded, setExpanded] = useState(false)
@@ -17,16 +18,15 @@ const ChooseExample = () => {
       setLoading(true)
       const result = await API.fetchExampleList()
       setExamples(result)
-      setLoading(false)
     } catch (error) {
-      const message = error instanceof Error
-        ? error.message
-        : String(error)
+      const message = getMessage(error)
       addNotification({
         variant: 'warning',
         title: 'Error updating examples list',
         message
       })
+    } finally {
+      setLoading(false)
     }
   }, [loading, addNotification])
 
