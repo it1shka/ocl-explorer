@@ -3,6 +3,7 @@ import editorJS from './editorJS'
 import editorOCL from './editorOCL'
 import global from './global'
 import notifications from './notifications'
+import results from './results'
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     editorOCL,
     global,
     notifications,
+    results,
   }
 })
 

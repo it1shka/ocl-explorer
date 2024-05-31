@@ -30,8 +30,14 @@ class API {
     this.baseUrl = baseUrl.replace(/\/$/, '')
   }
 
-  verifyOnServer = async (jsCode: string, oclCode: string) => {
-    // TODO: 
+  verifyOnServer = async (js: string, ocl: string) => {
+    const response = await fetch(`${this.baseUrl}/verify`, {
+      method: 'POST',
+      body: JSON.stringify({ js, ocl })
+    })
+    await checkResponseStatus(response)
+    const result = await response.text()
+    return result
   }
 
   fetchRandomExample = async () => {
