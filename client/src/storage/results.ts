@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import API from '../lib/api'
+import { getMessage } from '../lib/strings'
 
 type VerifyCodeParams = {
   js: string
@@ -12,7 +13,8 @@ export const verifyCode = createAsyncThunk (
     try {
       return await API.verifyOnServer(js, ocl)
     } catch (error) {
-      thunkAPI.rejectWithValue(error)
+      const message = getMessage(error)
+      return thunkAPI.rejectWithValue(message)
     }
   }
 )
@@ -40,11 +42,13 @@ const results = createSlice({
     }
   },
   extraReducers: (builder) => {
-    builder.addCase(verifyCode.rejected, (state, { error }) => ({
-      ...state,
-      loading: false,
-      error,
-    }))
+    builder.addCase(verifyCode.rejected, (state, { payload }) => {
+      return ({
+        ...state,
+        loading: false,
+        error: payload,
+      })
+    })
     builder.addCase(verifyCode.pending, (state) => ({
       ...state,
       loading: true,
@@ -53,7 +57,7 @@ const results = createSlice({
     builder.addCase(verifyCode.fulfilled, (state, { payload }) => ({
       loading: false,
       error: null,
-      entries: [...state.entries, payload ?? '<Empty output>'],
+      entries: [...state.entries, payload],
     }))
   }
 })

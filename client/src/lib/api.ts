@@ -72,4 +72,5 @@ class API {
   }
 }
 
-export default new API('http://localhost:3057')
+const api = new API('http://localhost:3057')
+export default api
