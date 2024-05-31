@@ -18,5 +18,5 @@ const queue = new Queue([
 ])
 
 for (const each of queue.customers) {
-  oclVerify(each)
+  OCL.verify(each)
 }

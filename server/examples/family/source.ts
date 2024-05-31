@@ -19,4 +19,4 @@ const family = new Family([
   new Person('Jack', 'Abrams', 42),
 ])
 
-oclVerify(family)
+OCL.verify(family)

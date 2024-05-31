@@ -1,6 +1,7 @@
 1) Flexible layout
-2) Notifications
+2) Notifications: MAKE THEM BETTER
 3) Linter for JS/TS & Syntax highlighting for OCL
-4) Examples of JS+OCL programs that can be loaded from server
-5) Add save / load files
+4) Examples of JS+OCL programs that can be loaded from server: MORE EXAMPLES
+-- 5) Add save / load files: DONE
 6) Fix resizing
+7) The OCL engine is not working in isolate, rebuild
