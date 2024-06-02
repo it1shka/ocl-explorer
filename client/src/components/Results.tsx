@@ -53,6 +53,7 @@ const Log = styled.p`
   color: grey;
   font-size: inherit;
   padding: 0.2em 0.5em;
+  white-space: pre-line;
 `
 
 const Console = styled.div<{ $fontSize: number }>`

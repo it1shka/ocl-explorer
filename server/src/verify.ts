@@ -54,13 +54,15 @@ const prepareBundle = async (js: string, ocl: string) => {
       let index = 0;
       return (obj) => {
         const result = engine.evaluate(obj);
+        const evalCtxAmount = result.getEvaluatedContexts().length.toString()
         const idx = String(index++);
+        const messageStart = 'Verification #' + idx + ': evaluated ' + evalCtxAmount + ' context(s), '
         if (result.getResult()) {
-          external.log('Verification #' + idx + ': passed');
+          external.log(messageStart + 'passed');
           return;
         }
         const failed = result.getNamesOfFailedInvs().join(', ');
-        external.log('Verification #' + idx + ': ' + failed + ' failed');
+        external.log(messageStart + failed + ' failed');
       }
     })();
 

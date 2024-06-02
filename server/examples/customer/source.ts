@@ -1,4 +1,5 @@
 class Customer {
+  typeName = "Customer"
   constructor (
     public readonly name: string,
     public readonly age: number,
@@ -7,6 +8,7 @@ class Customer {
 }
 
 class Queue {
+  typeName = "Queue"
   constructor (
     public readonly customers: Customer[],
   ) {}
@@ -18,5 +20,5 @@ const queue = new Queue([
 ])
 
 for (const each of queue.customers) {
-  OCL.verify(each)
+  verify(each)
 }

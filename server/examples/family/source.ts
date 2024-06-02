@@ -1,4 +1,5 @@
 class Person {
+  typeName = "Person"
   constructor (
     public readonly name: string,
     public readonly surname: string,
@@ -7,6 +8,7 @@ class Person {
 }
 
 class Family {
+  typeName = "Family"
   constructor (
     public readonly members: Person[],
   ) {}
@@ -19,4 +21,4 @@ const family = new Family([
   new Person('Jack', 'Abrams', 42),
 ])
 
-OCL.verify(family)
+verify(family)
