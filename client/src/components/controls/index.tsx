@@ -4,6 +4,7 @@ import RandomExample from './RandomExample'
 import RunOCL from './RunOCL'
 import ClearConsole from './ClearConsole'
 import ChooseExample from './ChooseExample'
+import OpenProjectPage from './OpenProjectPage'
 
 const Controls = () => {
   return (
@@ -12,6 +13,7 @@ const Controls = () => {
       <ChooseExample />
       <RandomExample />
       <ClearConsole />
+      <OpenProjectPage />
     </Container>
   )
 }
