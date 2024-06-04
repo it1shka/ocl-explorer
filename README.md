@@ -14,4 +14,6 @@ I suggest you to pack your code into classes with proper field __typeName__
 After that, you can use builtin __verify(obj)__ function to verify
 instances of those classes
 
-## Online hosted version is coming soon!
+## Online hosted version:
+Here you can find online version of that tool:
+http://150.230.149.120/
